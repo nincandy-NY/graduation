@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Graduation Card 2026</title>
+    <title>Graduation 2026</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
@@ -11,20 +11,19 @@
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 <body>
-    <div id="celebration-area"></div>
     <div class="container py-4">
         <div id="uploadStep" class="text-center">
             <h1 class="main-title mb-2">GRADUATION 2026</h1>
-            <p class="subtitle mb-5">สร้างการ์ด</p>
+            <p class="subtitle mb-5">สร้างการ์ดแสดงความยินดี</p>
             <div class="row justify-content-center">
                 <div class="col-12 col-md-6 col-lg-5">
                     <div class="form-container p-4">
                         <div class="mb-3 text-start">
-                            <label class="form-label text-gold">ชื่อของคุณ (Name)</label>
-                            <input type="text" id="nameInput" class="form-control dark-input" placeholder="พิมพ์ชื่อตรงนี้..." maxlength="25">
+                            <label class="form-label text-gold">ชื่อของคุณ</label>
+                            <input type="text" id="nameInput" class="form-control dark-input" placeholder="พิมพ์ชื่อ..." maxlength="20">
                         </div>
                         <div class="mb-4 text-start">
-                            <label class="form-label text-gold">อัปโหลดรูปถ่าย</label>
+                            <label class="form-label text-gold">อัปโหลดรูป (แนะนำรูปแนวตั้ง)</label>
                             <input type="file" id="imageInput" class="form-control dark-input" accept="image/*">
                         </div>
                         <button id="uploadBtn" class="btn btn-gold-action w-100 py-3 fw-bold" disabled>GENERATE CARD ✨</button>
@@ -38,7 +37,7 @@
                 <div id="congratsCard">
                     <div class="card-inner-frame">
                         <div class="image-holder">
-                            <img id="finalImage" src="" alt="Graduation">
+                            <div id="finalImage"></div>
                         </div>
                         <div class="text-holder">
                             <h2 id="displayUserName" class="name-display"></h2>
@@ -49,10 +48,8 @@
                     </div>
                 </div>
             </div>
-            <div class="mt-4 action-area">
-                <button onclick="downloadCard()" class="btn-luxury-download">
-                    <span>📥</span> DOWNLOAD FULL HD
-                </button>
+            <div class="mt-4">
+                <button onclick="downloadCard()" class="btn-luxury-download">📥 DOWNLOAD</button>
                 <br>
                 <button onclick="location.reload()" class="btn btn-link text-gold mt-3 text-decoration-none">← สร้างใหม่อีกใบ</button>
             </div>
