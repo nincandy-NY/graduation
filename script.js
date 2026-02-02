@@ -15,7 +15,6 @@ function validateForm() {
 nameInput.addEventListener('input', validateForm);
 imageInput.addEventListener('change', validateForm);
 
-// ฟังก์ชันสร้างลูกโป่ง
 function createBalloons() {
     const area = document.getElementById('celebration-area');
     for(let i=0; i<15; i++) {
@@ -28,11 +27,10 @@ function createBalloons() {
     }
 }
 
-// ฟังก์ชันจุดพลุ
 function launchFireworks() {
     var duration = 5 * 1000;
     var animationEnd = Date.now() + duration;
-    var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+    var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 1000 };
 
     function randomInRange(min, max) { return Math.random() * (max - min) + min; }
 
@@ -67,7 +65,6 @@ uploadBtn.addEventListener('click', async () => {
             uploadStep.classList.add('d-none');
             resultStep.classList.remove('d-none');
             
-            // เริ่มการฉลอง!
             launchFireworks();
             createBalloons();
         }
@@ -81,17 +78,30 @@ uploadBtn.addEventListener('click', async () => {
 
 function downloadCard() {
     const card = document.getElementById('congratsCard');
-    const originalTransform = card.style.transform;
-    card.style.transform = "none"; // เอา scale ออกก่อนโหลดเพื่อให้ขนาดตรง 1080x1920
+    const originalStyle = card.style.cssText;
+    const nameDisplay = card.querySelector('.name-display');
+
+    // ขยายการ์ดเป็น 1080x1920 เฉพาะตอนดาวน์โหลด
+    card.style.width = "1080px";
+    card.style.maxWidth = "none";
+    card.style.height = "1920px";
+    card.style.aspectRatio = "auto";
+    nameDisplay.style.fontSize = "140px"; // ขนาดฟอนต์ใหญ่สำหรับ HD
 
     html2canvas(card, { 
         useCORS: true, 
-        width: 1080, height: 1920, scale: 1 
+        width: 1080, 
+        height: 1920, 
+        scale: 1,
+        logging: false
     }).then(canvas => {
         const link = document.createElement('a');
-        link.download = `Graduation_2026_Premium.png`;
-        link.href = canvas.toDataURL('image/png');
+        link.download = `Graduation_2026_${nameInput.value.trim()}.png`;
+        link.href = canvas.toDataURL('image/png', 1.0);
         link.click();
-        card.style.transform = originalTransform;
+        
+        // คืนค่าการแสดงผลบนเว็บ
+        card.style.cssText = originalStyle;
+        nameDisplay.style.fontSize = "";
     });
 }
