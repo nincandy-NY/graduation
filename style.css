@@ -8,28 +8,24 @@ body {
     overflow-x: hidden;
 }
 
-/* เอฟเฟกต์ลูกโป่งลอย */
 .balloon {
     position: absolute;
     bottom: -100px;
-    width: 40px;
-    height: 50px;
+    width: 40px; height: 50px;
     background: radial-gradient(circle at 30% 30%, #ff758c, #ff7eb3);
     border-radius: 50%;
-    z-index: 0;
-    opacity: 0.6;
+    z-index: 0; opacity: 0.4;
     animation: floatUp 8s linear infinite;
 }
 
 @keyframes floatUp {
-    0% { transform: translateY(0) rotate(0deg); opacity: 0.6; }
+    0% { transform: translateY(0) rotate(0deg); opacity: 0.4; }
     100% { transform: translateY(-120vh) rotate(20deg); opacity: 0; }
 }
 
 .main-title { color: #e0c097; letter-spacing: 4px; font-weight: 600; font-size: 2rem; }
 .subtitle { color: #636e82; }
 
-/* Form Design */
 .form-container {
     background: rgba(15, 20, 32, 0.8);
     backdrop-filter: blur(10px);
@@ -38,48 +34,67 @@ body {
     box-shadow: 0 20px 40px rgba(0,0,0,0.5);
 }
 
-.dark-input {
-    background: #05070a !important;
-    border: 1px solid #2d3748 !important;
-    color: #fff !important;
-}
+.dark-input { background: #05070a !important; border: 1px solid #2d3748 !important; color: #fff !important; }
 
 .btn-gold-action {
     background: linear-gradient(45deg, #c5a059, #f1d5a2);
     border: none; color: #05070a; border-radius: 12px; transition: 0.3s;
 }
 
-/* Card 1080x1920 */
+/* Card 9:16 - Responsive */
+.card-viewer { display: flex; justify-content: center; padding: 10px; }
+
 #congratsCard {
-    width: 1080px; height: 1920px;
+    width: 100%;
+    max-width: 400px; /* ขนาดจำลองบนหน้าจอ */
+    aspect-ratio: 9 / 16;
     background: #0a0e17;
     position: relative;
     overflow: hidden;
-    display: flex; flex-direction: column;
-    transform-origin: top center;
+    display: flex;
+    flex-direction: column;
 }
 
-/* Responsive Zoom */
-.card-viewer { display: flex; justify-content: center; margin-bottom: 20px; }
-@media (min-width: 768px) { #congratsCard { transform: scale(0.3); margin-bottom: -1300px; } }
-@media (max-width: 767px) { #congratsCard { transform: scale(0.2); margin-bottom: -1500px; } }
+.card-inner-frame {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 8%;
+    z-index: 5;
+}
 
-.card-inner-frame { height: 100%; display: flex; flex-direction: column; padding: 100px; z-index: 5; }
-.image-holder { width: 880px; height: 1100px; border: 5px solid #c5a059; padding: 15px; background: #000; margin: 0 auto; }
-#finalImage { width: 100%; height: 100%; object-fit: cover; }
+.image-holder {
+    width: 100%;
+    height: 65%; /* พื้นที่รูปภาพ */
+    border: 3px solid #c5a059;
+    padding: 10px;
+    background: #000;
+    overflow: hidden; /* กันรูปส่วนที่เกินหลุดออกมา */
+}
 
-.name-display { font-family: 'Playfair Display', serif; font-size: 140px; color: #e0c097; margin-top: 60px; }
-.luxury-line { width: 400px; height: 4px; background: #c5a059; margin: 40px auto; }
-.wish-label { font-size: 55px; color: #fff; font-weight: 200; }
-.badge-2026 { margin-top: 50px; font-size: 40px; letter-spacing: 5px; color: #c5a059; border: 2px solid #c5a059; padding: 15px 50px; display: inline-block; }
+/* แก้ไขให้ Crop รูปภาพที่นี่ */
+#finalImage { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; /* ครอปรูปให้เต็มกรอบ ห้ามบีบภาพ */
+    object-position: center; /* จัดให้อยู่ตรงกลาง */
+}
 
-/* ปุ่มโหลดแบบหรู */
+.name-display { 
+    font-family: 'Playfair Display', serif; 
+    font-size: clamp(2rem, 10vw, 4rem); 
+    color: #e0c097; margin-top: 15px; 
+}
+
+.luxury-line { width: 50%; height: 2px; background: #c5a059; margin: 15px auto; }
+.wish-label { font-size: clamp(0.8rem, 3.5vw, 1.1rem); color: #fff; line-height: 1.5; }
+.badge-2026 { margin-top: 15px; font-size: 0.8rem; letter-spacing: 3px; color: #c5a059; border: 1px solid #c5a059; padding: 5px 20px; display: inline-block; }
+
 .btn-luxury-download {
     background: linear-gradient(145deg, #f1d5a2, #c5a059, #b38b45);
     color: #05070a; border: none; border-radius: 60px;
-    padding: 20px 60px; font-size: 1.3rem; font-weight: 600;
-    box-shadow: 0 10px 30px rgba(197, 160, 89, 0.4);
+    padding: 15px 40px; font-size: 1.1rem; font-weight: 600;
     cursor: pointer; transition: 0.4s;
 }
-.btn-luxury-download:hover { transform: translateY(-5px); filter: brightness(1.1); }
+
 .text-gold { color: #c5a059; }
